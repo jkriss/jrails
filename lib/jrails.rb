@@ -129,6 +129,8 @@ module ActionView
         js_options['type'] = options[:method] ? method_option_to_s(options[:method]) : ( options[:form] ? "'post'" : nil )
         js_options['dataType'] = options[:datatype] ? "'#{options[:datatype]}'" : (options[:update] ? nil : "'script'")
         
+        js_options['global'] = false if options[:global] == false
+        
         if options[:form]
           js_options['data'] = "#{JQUERY_VAR}.param(#{JQUERY_VAR}(this).serializeArray())"
         elsif options[:submit]
